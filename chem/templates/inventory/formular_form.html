@@ -1,0 +1,16 @@
+<!-- templates/formulas/formula_form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Formula</title>
+</head>
+<body>
+    <h1>Add Formula</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'formula_list' %}">Back to Formulas</a>
+</body>
+</html>

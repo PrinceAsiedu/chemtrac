@@ -1,0 +1,23 @@
+<!-- templates/formulas/formula_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ formula.name }}</title>
+</head>
+<body>
+    <h1>{{ formula.name }}</h1>
+    <ul>
+        {% for formula_chemical in formula.formulachemical_set.all %}
+            <li>{{ formula_chemical.quantity }} of {{ formula_chemical.chemical.name }}
+                <a href="{% url 'remove_chemical' formula.pk formula_chemical.chemical.pk %}">Remove</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Chemical</button>
+    </form>
+    <a href="{% url 'formula_list' %}">Back to Formulas</a>
+</body>
+</html>

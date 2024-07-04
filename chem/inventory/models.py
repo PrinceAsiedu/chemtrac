@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Chemical(models.Modeld):
+class Chemical(models.Model):
     name = models.CharField(max_length=200, blank=False)
     description = models.TextField(blank=True, null=True)
 

@@ -1,0 +1,16 @@
+<!-- templates/formulas/formula_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulas</title>
+</head>
+<body>
+    <h1>Formulas</h1>
+    <ul>
+        {% for formula in formulas %}
+            <li><a href="{% url 'formula_detail' formula.pk %}">{{ formula.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_formula' %}">Add Formula</a>
+</body>
+</html>
