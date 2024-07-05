@@ -1,16 +1,33 @@
-<!-- templates/formulas/formula_list.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Formulas</title>
-</head>
-<body>
-    <h1>Formulas</h1>
-    <ul>
-        {% for formula in formulas %}
-            <li><a href="{% url 'inventory:formula_detail' formula.pk %}">{{ formula.name }}</a></li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'inventory:add_formula' %}">Add Formula</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Formulas{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4">
+    <h1 class="text-2xl font-bold mb-4">Formulas</h1>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="py-2 px-4 border-b">Formula Name</th>
+                    <th class="py-2 px-4 border-b">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for formula in formulas %}
+                    <tr class="even:bg-gray-100 odd:bg-white hover:bg-gray-200">
+                        <td class="py-2 px-2 border-b text-center">{{ formula.name }}</td>
+                        <td class="py-2 px-2 border-b text-center">
+                            <a href="{% url 'inventory:formula_detail' formula.pk %}" class="text-blue-500 hover:underline">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4">
+        <a href="{% url 'inventory:add_formula' %}" class="text-white rounded-full bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium text-xs px-5 py-2.5 me-2 mb-2 mt-4 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Add Formula</a>
+    </div>
+</div>
+{% endblock %}

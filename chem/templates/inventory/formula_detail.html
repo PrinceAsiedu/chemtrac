@@ -1,23 +1,41 @@
-<!-- templates/formulas/formula_detail.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ formula.name }}</title>
-</head>
-<body>
-    <h1>{{ formula.name }}</h1>
-    <ul>
-        {% for formula_chemical in formula.formulachemical_set.all %}
-            <li>{{ formula_chemical.quantity }} of {{ formula_chemical.chemical.name }}
-                <a href="{% url 'inventory:remove_chemical' formula.pk formula_chemical.chemical.pk %}">Remove</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Chemical</button>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ formula.name }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4">
+    <h1 class="text-2xl font-bold mb-4">{{ formula.name }}</h1>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="py-2 px-4 border-b">Chemical Name</th>
+                    <th class="py-2 px-4 border-b">Quantity</th>
+                    <th class="py-2 px-4 border-b">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for formula_chemical in formula.formulachemical_set.all %}
+                    <tr class="even:bg-gray-100 odd:bg-white hover:bg-gray-200">
+                        <td class="py-2 px-2 border-b text-center">{{ formula_chemical.chemical.name }}</td>
+                        <td class="py-2 px-2 border-b text-center">{{ formula_chemical.quantity }}</td>
+                        <td class="py-2 px-2 border-b text-center">
+                            <a href="{% url 'inventory:remove_chemical' formula.pk formula_chemical.chemical.pk %}" class="text-red-500 hover:underline">Remove</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <form method="post" class="mt-4 py-4">
+        <div class="grid gap-6 mb-6 md:grid-cols-2"></div>
+            {% csrf_token %}
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="px-5 py-2 mt-5 text-xs font-medium text-center text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Chemical</button>
     </form>
-    <a href="{% url 'inventory:formula_list' %}">Back to Formulas</a>
-</body>
-</html>
+    <div class="mt-4">
+        <a href="{% url 'inventory:formula_list' %}" class="text-white rounded-full bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium text-xs px-5 py-2.5 me-2 mb-2 mt-5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Back to Formulas</a>
+    </div>
+{% endblock %}

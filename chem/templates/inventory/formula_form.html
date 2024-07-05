@@ -1,16 +1,16 @@
-<!-- templates/formulas/formula_form.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add Formula</title>
-</head>
-<body>
-    <h1>Add Formula</h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Add Formula{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4">
+    <h1 class="text-2xl font-bold mb-4">Add Formula</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save</button>
+        <button type="submit" class="btn btn-primary">Save</button>
     </form>
-    <a href="{% url 'inventory:formula_list' %}">Back to Formulas</a>
-</body>
-</html>
+    <a href="{% url 'inventory:formula_list' %}" class="btn btn-secondary mt-4">Back to Formulas</a>
+</div>
+{% endblock %}
