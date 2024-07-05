@@ -8,9 +8,9 @@
     <h1>Formulas</h1>
     <ul>
         {% for formula in formulas %}
-            <li><a href="{% url 'formula_detail' formula.pk %}">{{ formula.name }}</a></li>
+            <li><a href="{% url 'inventory:formula_detail' formula.pk %}">{{ formula.name }}</a></li>
         {% endfor %}
     </ul>
-    <a href="{% url 'add_formula' %}">Add Formula</a>
+    <a href="{% url 'inventory:add_formula' %}">Add Formula</a>
 </body>
 </html>

@@ -11,6 +11,7 @@ class Chemical(models.Model):
 class Formula(models.Model):
     name = models.CharField(max_length=100)
     chemicals = models.ManyToManyField(Chemical, through='FormulaChemical')
+    remarks = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name
