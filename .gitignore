@@ -139,6 +139,7 @@ GitHub.sublime-settings
 
 # npm 
 node_modules/
+npm-debug.log
 
 # Ignore Django migration files
 **/migrations/*.py

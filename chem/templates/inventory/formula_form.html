@@ -9,8 +9,10 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="px-5 py-2 mt-5 text-xs font-medium text-center text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
     </form>
-    <a href="{% url 'inventory:formula_list' %}" class="btn btn-secondary mt-4">Back to Formulas</a>
+    <div class="mt-5">
+        <a href="{% url 'inventory:formula_list' %}" class="text-white rounded-full bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium text-xs px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Back to Formulas</a>
+    </div>
 </div>
 {% endblock %}
